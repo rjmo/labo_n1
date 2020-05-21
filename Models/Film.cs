@@ -13,5 +13,17 @@ namespace labo_n1.Models
         public string Titre { get; set; }
         [DisplayName("Durée du film")]
         public int Duree { get; set; }
+        [DisplayName("Réalisateur")]
+        public string Realisateur { get; set; }
+        [DisplayName("Catégorie")]
+        //public string Categorie { get; set; }
+                  
+        public Catego Categorie { get; set; }
+
     }
+    public enum Catego
+    {
+        Action, Aventure, Comédie, Drame, Humour, Horreur, Suspense, Science_fiction
+    }
+
 }

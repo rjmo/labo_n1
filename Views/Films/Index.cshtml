@@ -2,24 +2,31 @@
 @{
     ViewBag.Title = "View";
 }
-<h4><a href="@Url.Action("Create", "Films")">Ajouter un nouveau film</a></h4><br /><br />
-    <table class="table table-bordered table-striped">
+<br /><a href="@Url.Action("Create", "Films")" role="button" class="btn btn-success" style="background-color: #23ce6b; ">Ajouter un nouveau film</a>
+<br />
+<br />
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Id</th>
+        <th>Titre</th>
+        <th>Durée</th>
+        <th>Réalisateur</th>
+        <th>Catégorie</th>
+        <th></th>
+    </tr>
+    @for (int i = 0; i < Model.Rows.Count; i++)
+    {
         <tr>
-            <th>Id</th>
-            <th>Titre</th>
-            <th>Duree</th>
-            <th></th>
+            <td>@Model.Rows[i][0]</td>
+            <td>@Model.Rows[i][1]</td>
+            <td>@Model.Rows[i][2]</td>
+            <td>@Model.Rows[i][3]</td>
+            <td>@Model.Rows[i][4]</td>
+            <td>
+                <a href="@Url.Action("Edit","Films", new {@id = Model.Rows[i][0]})" role="button" class="btn btn-warning">Modifier</a>
+                <a href="@Url.Action("Delete", "Films", new {@id = Model.Rows[i][0]})" role="button" class="btn btn-danger">Enlever</a>
+            </td>
         </tr>
-        @for (int i = 0; i < Model.Rows.Count; i++)
-        {
-            <tr>
-                <td>@Model.Rows[i][0]</td>
-                <td>@Model.Rows[i][1]</td>
-                <td>@Model.Rows[i][2]</td>
-                <td>
-                    <a href="@Url.Action("Edit","Films", new {@id = Model.Rows[i][0]})">Modifier</a>
-                    <a href="@Url.Action("Delete", "Films", new {@id = Model.Rows[i][0]})">Enveler</a>
-                </td>
-            </tr>
-        }
-    </table>
+    }
+</table>

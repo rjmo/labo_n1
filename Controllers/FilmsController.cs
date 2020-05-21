@@ -44,13 +44,16 @@ namespace labo_n1.Controllers
         {
             try
             {
+
                 using (SqlConnection con = new SqlConnection(chaineConnexion))
                 {
                     con.Open();
-                    string requete = "INSERT INTO films VALUES(@Titre, @Duree)";
+                    string requete = "INSERT INTO films VALUES(@Titre, @Duree, @Realisateur, @Categorie)";
                     SqlCommand cmd = new SqlCommand(requete, con);
                     cmd.Parameters.AddWithValue("@Titre", film.Titre);
                     cmd.Parameters.AddWithValue("@Duree", film.Duree);
+                    cmd.Parameters.AddWithValue("@Realisateur", film.Realisateur);
+                    cmd.Parameters.AddWithValue("@Categorie", film.Categorie.ToString());
                     cmd.ExecuteNonQuery();
                 }
 
@@ -80,6 +83,8 @@ namespace labo_n1.Controllers
                 film.Id = Convert.ToInt32(tabFilms.Rows[0][0].ToString());
                 film.Titre = tabFilms.Rows[0][1].ToString();
                 film.Duree = Convert.ToInt32(tabFilms.Rows[0][2].ToString());
+                film.Realisateur = tabFilms.Rows[0][3].ToString();
+               // film.Categorie = tabFilms.Rows[0][4].ToString();
                 return View(film);
             }
             else
@@ -97,11 +102,13 @@ namespace labo_n1.Controllers
                 using (SqlConnection con = new SqlConnection(chaineConnexion))
                 {
                     con.Open();
-                    string requete = "UPDATE films SET Titre=@Titre, Duree=@Duree WHERE Id=@Id";
+                    string requete = "UPDATE films SET Titre=@Titre, Duree=@Duree, Realisateur=@Realisateur, Categorie=@Categorie  WHERE Id=@Id";
                     SqlCommand cmd = new SqlCommand(requete, con);
                     cmd.Parameters.AddWithValue("@Id", film.Id);
                     cmd.Parameters.AddWithValue("@Titre", film.Titre);
                     cmd.Parameters.AddWithValue("@Duree", film.Duree);
+                    cmd.Parameters.AddWithValue("@Realisateur", film.Realisateur);
+                    cmd.Parameters.AddWithValue("@Categorie", film.Categorie);
                     cmd.ExecuteNonQuery();
                 }
 
