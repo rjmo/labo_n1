@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using labo_n1.Models;
+using System.Web.UI.WebControls;
 
 namespace labo_n1.Controllers
 {
@@ -84,7 +85,6 @@ namespace labo_n1.Controllers
                 film.Titre = tabFilms.Rows[0][1].ToString();
                 film.Duree = Convert.ToInt32(tabFilms.Rows[0][2].ToString());
                 film.Realisateur = tabFilms.Rows[0][3].ToString();
-               // film.Categorie = tabFilms.Rows[0][4].ToString();
                 return View(film);
             }
             else
@@ -108,7 +108,7 @@ namespace labo_n1.Controllers
                     cmd.Parameters.AddWithValue("@Titre", film.Titre);
                     cmd.Parameters.AddWithValue("@Duree", film.Duree);
                     cmd.Parameters.AddWithValue("@Realisateur", film.Realisateur);
-                    cmd.Parameters.AddWithValue("@Categorie", film.Categorie);
+                    cmd.Parameters.AddWithValue("@Categorie", film.Categorie.ToString());
                     cmd.ExecuteNonQuery();
                 }
 

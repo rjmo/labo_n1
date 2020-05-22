@@ -2,17 +2,21 @@
 @{
     ViewBag.Title = "View";
 }
-<br /><a href="@Url.Action("Create", "Films")" role="button" class="btn btn-success" style="background-color: #23ce6b; ">Ajouter un nouveau film</a>
+@using labo_n1.Models
+
+<br /><a href="@Url.Action("Create", "Films")" role="button" class="btn btn-success">Ajouter un nouveau film</a>
 <br />
 <br />
 
-<table class="table table-bordered table-striped">
+<table class="table table-bordered table-striped" id="tab" >
     <tr>
         <th>Id</th>
         <th>Titre</th>
         <th>Durée</th>
         <th>Réalisateur</th>
-        <th>Catégorie</th>
+        <th>
+            @Html.DropDownList("Categorie", new SelectList(Enum.GetValues(typeof(Catego))), "Catégorie", new { @class = "form-control", @id = "sel", onclick = "myFunction()" })
+        </th>
         <th></th>
     </tr>
     @for (int i = 0; i < Model.Rows.Count; i++)
