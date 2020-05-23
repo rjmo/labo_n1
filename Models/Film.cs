@@ -24,7 +24,7 @@ namespace labo_n1.Models
     public enum Catego
     {
         
-        Action, Aventure, Comédie, Drame, Humour, Horreur, Suspense, ScienceFiction
+        Action, Aventure, Comedie, Drame, Humour, Horreur, Suspense, ScienceFiction
     }
 
 }
